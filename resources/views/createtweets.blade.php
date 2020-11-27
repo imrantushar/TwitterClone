@@ -21,12 +21,21 @@
         </style>
     </head>
     <body class="antialiased">
-            <form action={{ url('tweets') }} method="POST" class="form bg-white p-6 my-10 relative"> 
+            <form action={{ isset($id) ?  url("tweets/{$id}/update") : url('tweets') }} method="POST" class="form bg-white p-6 my-10 relative"> 
                 @csrf
+                @isset($id)
+                    <input type="hidden" name="id" value={{$id}}>
+                @endisset
                 <div class="icon bg-blue-600 text-white w-6 h-6 absolute flex items-center justify-center p-5" style="left:-40px"><i class="fal fa-phone-volume fa-fw text-2xl transform -rotate-45"></i></div>
                 <h3 class="text-2xl text-gray-900 font-semibold">Create Tweet</h3>
-                <textarea name="body" id="" cols="50" rows="3" placeholder="Write Your Tweet" class="border p-2 mt-3 w-full"></textarea>
-                <input type="submit" value="Submit" class="w-full mt-6 bg-blue-600 text-white font-semibold p-3">
+                <textarea name="body" id="" cols="50" rows="3" placeholder="Write Your Tweet" style="border: 2px solid;">
+                    @isset($body)
+                        {{$body}}
+                    @endisset
+                </textarea>
+                <p>
+                    <input type="submit" value="Submit" class="w-full mt-6 bg-blue-600 text-white font-semibold p-3">
+                </p>
             </form>
     </body>
 </html>

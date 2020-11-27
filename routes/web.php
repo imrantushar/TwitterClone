@@ -18,5 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/tweets', [TweetController::class, 'index']);
+Route::get('/tweets/create', [TweetController::class, 'create']);
 Route::post('/tweets', [TweetController::class, 'store']);
-Route::get('/tweets/create', [TweetController::class, 'store']);
+Route::get('/tweets/{id}/edit', [TweetController::class, 'edit']);
+Route::post('/tweets/{id}/update', [TweetController::class, 'update']);
+Route::get('/tweets/{id}/delete', [TweetController::class, 'destroy']);
